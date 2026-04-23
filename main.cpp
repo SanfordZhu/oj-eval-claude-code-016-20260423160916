@@ -570,7 +570,7 @@ int main() {
                 for (size_t j = 0; j < result.size(); j++) {
                     if (j > 0) printf(" ");
 
-                    cout << result[j];
+                    printf("%d", result[j]);
                 }
                 printf("\n");
                             }
