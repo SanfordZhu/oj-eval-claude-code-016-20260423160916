@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstdio>
-#include <cstdio>
 #include <cstring>
 #include <string>
 #include <vector>
@@ -72,8 +71,8 @@ private:
         int page;
         if (fh.free_list != -1) {
             page = fh.free_list;
-            fseek(fp, page * PAGE_SIZE, SEEK_SET);
             NodeHeader nh;
+            fseek(fp, page * PAGE_SIZE, SEEK_SET);
             fread(&nh, sizeof(NodeHeader), 1, fp);
             fh.free_list = nh.next;
             write_header();
@@ -95,7 +94,7 @@ private:
         fwrite(&nh, sizeof(NodeHeader), 1, fp);
         char padding[PAGE_SIZE - sizeof(NodeHeader)];
         memset(padding, 0, sizeof(padding));
-        fwrite(padding, sizeof(padding), 1, fp);
+        fwrite(padding, 1, sizeof(padding), fp);
         fflush(fp);
         fh.free_list = page;
         write_header();
@@ -543,7 +542,6 @@ public:
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    cout.setf(ios::unitbuf);
     BPTree tree;
     int n;
     cin >> n;
@@ -566,14 +564,13 @@ int main() {
             vector<int> result = tree.find(key.c_str());
             if (result.empty()) {
                 printf("null\n");
-                            } else {
+            } else {
                 for (size_t j = 0; j < result.size(); j++) {
                     if (j > 0) printf(" ");
-
                     printf("%d", result[j]);
                 }
                 printf("\n");
-                            }
+            }
         }
     }
     return 0;
