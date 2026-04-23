@@ -8,7 +8,7 @@
 
 using namespace std;
 
-const int PAGE_SIZE = 4096;
+const int PAGE_SIZE = 65536;
 const int MAX_KEY_LEN = 64;
 const char* FILE_NAME = "bpt_data.bin";
 
